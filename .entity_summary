@@ -54,5 +54,5 @@ createRecordUrl from the service. Note the lowercase `l` in the service path.
   ≡ 3 records at build time
   ⚙ getStammdaten() · getStammdatenEntry(id) · createStammdatenEntry(fields) · updateStammdatenEntry(id, fields) · deleteStammdatenEntry(id) · queryStammdaten({ filter, orderby, limit, offset, fields }) · countStammdaten(filter?)
 - MKK-Angebotmanager (mkk_angebotmanager): pk_id^[string/text], anfrage_datei!^[file], ergebnis_json^[string/textarea]
-  ≡ 3 records at build time
+  ≡ 2 records at build time
   ⚙ getMkkAngebotmanager() · getMkkAngebotmanagerEntry(id) · createMkkAngebotmanagerEntry(fields) · updateMkkAngebotmanagerEntry(id, fields) · deleteMkkAngebotmanagerEntry(id) · queryMkkAngebotmanager({ filter, orderby, limit, offset, fields }) · countMkkAngebotmanager(filter?)

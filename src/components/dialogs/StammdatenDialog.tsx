@@ -278,7 +278,7 @@ export function StammdatenDialog({ open, onClose, onSubmit, defaultValues, recor
         <Label htmlFor="kunden_csv">{fieldLabel('stammdaten', 'kunden_csv')}</Label>
         <Textarea
           id="kunden_csv"
-          placeholder="One customer per line"
+          placeholder=""
           value={fields.kunden_csv ?? ''}
           onChange={e => setFields(f => ({ ...f, kunden_csv: e.target.value }))}
           rows={3}
@@ -290,7 +290,7 @@ export function StammdatenDialog({ open, onClose, onSubmit, defaultValues, recor
         <Label htmlFor="ansprechpartner_csv">{fieldLabel('stammdaten', 'ansprechpartner_csv')}</Label>
         <Textarea
           id="ansprechpartner_csv"
-          placeholder="One contact per line"
+          placeholder=""
           value={fields.ansprechpartner_csv ?? ''}
           onChange={e => setFields(f => ({ ...f, ansprechpartner_csv: e.target.value }))}
           rows={3}
@@ -302,7 +302,7 @@ export function StammdatenDialog({ open, onClose, onSubmit, defaultValues, recor
         <Label htmlFor="artikel_csv">{fieldLabel('stammdaten', 'artikel_csv')}</Label>
         <Textarea
           id="artikel_csv"
-          placeholder="One item per line"
+          placeholder=""
           value={fields.artikel_csv ?? ''}
           onChange={e => setFields(f => ({ ...f, artikel_csv: e.target.value }))}
           rows={3}
@@ -314,7 +314,7 @@ export function StammdatenDialog({ open, onClose, onSubmit, defaultValues, recor
         <Label htmlFor="lieferanschriften_csv">{fieldLabel('stammdaten', 'lieferanschriften_csv')}</Label>
         <Textarea
           id="lieferanschriften_csv"
-          placeholder="One address per line"
+          placeholder=""
           value={fields.lieferanschriften_csv ?? ''}
           onChange={e => setFields(f => ({ ...f, lieferanschriften_csv: e.target.value }))}
           rows={3}

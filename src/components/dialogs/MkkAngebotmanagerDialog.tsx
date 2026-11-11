@@ -299,7 +299,7 @@ export function MkkAngebotmanagerDialog({ open, onClose, onSubmit, defaultValues
         <Label htmlFor="pk_id">{fieldLabel('mkk_angebotmanager', 'pk_id')}</Label>
         <Input
           id="pk_id"
-          placeholder="e.g. MKK-2026-001"
+          placeholder=""
           value={fields.pk_id ?? ''}
           onChange={e => setFields(f => ({ ...f, pk_id: e.target.value }))}
         />
@@ -383,7 +383,7 @@ export function MkkAngebotmanagerDialog({ open, onClose, onSubmit, defaultValues
         <Label htmlFor="ergebnis_json">{fieldLabel('mkk_angebotmanager', 'ergebnis_json')}</Label>
         <Textarea
           id="ergebnis_json"
-          placeholder="Paste the result as JSON"
+          placeholder=""
           value={fields.ergebnis_json ?? ''}
           onChange={e => setFields(f => ({ ...f, ergebnis_json: e.target.value }))}
           rows={3}

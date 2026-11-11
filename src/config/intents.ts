@@ -43,7 +43,7 @@ export interface IntentLink {
 
 export const INTENTS: IntentLink[] = [
   // <custom:intents>
-  { path: '/intents/anfrage-hochladen', label: { de: 'Anfrage hochladen', en: 'Upload request' }, icon: IconFileUpload, description: 'Kundenanfrage hochladen; Auswertung und Ergebnis-JSON folgen automatisch' },
+  { path: '/intents/anfrage-hochladen', label: { de: 'Anfrage hochladen', en: 'Upload request' }, icon: IconFileUpload, description: { de: 'Kundenanfrage hochladen; Auswertung und Ergebnis-JSON folgen automatisch', en: 'Upload customer request; processing and result JSON follow automatically' } },
   // </custom:intents>
 ];
 
@@ -63,5 +63,5 @@ export const INTENTS_PENDING = false;
  * pulsing "werden erstellt …" in every deployed Phase-1 bundle forever — no
  * code path redeploys Phase 1 without the flag (live 03.09.2026).
  */
-export const INTENTS_PENDING_SINCE: string | null = '2026-11-11T22:16:36+00:00';
+export const INTENTS_PENDING_SINCE: string | null = null;
 export const PENDING_MAX_MINUTES = 30;

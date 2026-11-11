@@ -133,7 +133,7 @@
           "description": "A string value that can contain multiple lines of text (or `null`/`None`).",
           "required": false,
           "in_list": true,
-          "in_mobile_list": false,
+          "in_mobile_list": true,
           "in_text": false,
           "in_structured_search": null,
           "in_fulltext_search": true,
