@@ -1,0 +1,16 @@
+{
+  "entities": {
+    "Stammdaten": {
+      "placeholders_set": 4,
+      "defaults_keys": [],
+      "computed_keys": [],
+      "reason": "Pure master data with CSV text areas only, so no numeric chain, defaults or formulas apply."
+    },
+    "MKK-Angebotmanager": {
+      "placeholders_set": 2,
+      "defaults_keys": [],
+      "computed_keys": [],
+      "reason": "Pure technical record with an ID and a JSON text field, so there is no numeric chain to calculate and no obvious default."
+    }
+  }
+}

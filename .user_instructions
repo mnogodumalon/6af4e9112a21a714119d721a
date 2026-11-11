@@ -1,0 +1,212 @@
+Zur Erstellung von MKK-Angeboten sollen Bestellungen/Anfragen  von Kunden, die im PDF-, Bild- oder einfachem Text-Format (z.B. Inhalt einer Email) vorliegen und hochgeladen werden sollen.
+Daraus sollen folgende zur Bestellung zugehörigen Informationen extrahiert werden:
+	Kunde
+	Ansprechpartner
+	Lieferanschrift
+	Liste von Artikeln mit Mengen 
+	evtl. Spediteur
+	evtl. gewünschte Lieferzeit 
+	etc.
+
+Wenn das Format PDF ist und im Inhalt des PDF keine Text vorhanden ist, soll der Inhalt als Bild interpretiert und  mit OCR ausgewertet werden.
+
+Die im Dokument gefunden Infos zu 
+	Kunden,
+	Ansprechpartner,
+	Artikel,
+	Lieferanschriften
+
+sollen in den entsprechenden Feldern einer separaten Stammdaten-App gesucht werden.
+Dabei soll es nicht für jeden Aspekt "Kunden", "Artikel" ,"Ansprechpartner" und "Lieferadressen" eine eigene Stammdaten-App geben, 
+sondern eine einzige Stammdaten-App, in der für jeden Aspekt ein Feld angelegt werden soll, das mit einer CSV-Liste befüllt werden wird.
+
+Die Felder der Stammdaten App sollen wie folgt heissen: 
+	Kunden_CSV,
+	Ansprechpartner_CSV,
+	Artikel_CSV,
+	Lieferanschriften_CSV
+
+und sind jeweils mit CSV-Listen befüllt.
+
+
+Beschreibung der CSV-Stammdaten:
+
+Kunden_CSV (Voraussichtliche Gesamtgröße des CSV ca 150kB): 
+	Beispiel -Inhalt:
+	NUMMER;BEZEICHNUNG;USTIDNR;eMail RG;Adresse Feld 1;Adresse Feld 2;Adresse Feld 3;Adresse Feld 4;STRASSE;PLZ;ORT;LAND;TELEFON;MOBIL;FAX;EMAIL;KD_ID;KAHELIT
+	15230;Sakret Trockenbaustoffe Sachsen GmbH & Co. KG;;;Sakret Trockenbaustoffe Sachsen GmbH & Co. KG;;;;Industriestraße 1;09236;Claußnitz;D;037202 4030;;;produktion.claußnitz@sakret-sachsen.de;686491;0
+	15233;Transa Spedition GmbH;;;TRANSA Spedition GmbH;;;;Kerschensteinerstr. 1;83395;Freilassing;D;;;;;687091;0
+	15401;Raildox GmbH & Co. KG;;;Raildox GmbH & Co. KG;Öffentliches Eisenbahnverkehrsunternehmen;Bahnpersonal- u. Logistikdienstleistung;;Bahnhofstr. 23;99084;Erfurt;D;;;;;730701;1
+	16797;raildox GmbH & Co. KG;;;Raildox GmbH & Co. KG;Öffentliches Eisenbahnverkehrsunternehmen;Bahnpersonal- und Logistikdienstleistung;;Zum Güterbahnhof 7;99085;Erfurt;D;;;;;1131511;0
+	16857;Euroquarz GmbH;;;Euroquarz GmbH;;;;Südwall 15;46282;Dorsten;D;;;;;1146701;0
+	32061;EUROQUARZ GmbH;DE 125079913;;EUROQUARZ GmbH;;;;Südwall 15;46282;Dorsten;D;(035205) 527-0;;;;80051;1
+	36006;MKK;;;MKK Märkische Kies- und Kalksandstein-;werke GmbH Hennersdorf;;;Finsterwalder Chaussee 16a;03253;Doberlug-Kirchhain;D;;;;;123891;1
+	
+	Infos zum CSV-Inhalts:
+	Das CSV-Feld KD_ID im CSV ist der Primary Key von "Kunden"
+
+
+Ansprechpartner_CSV (Voraussichtliche Gesamtgröße des CSV  ca 230kB): 
+	Beispiel -Inhalt:
+	NACHNAME;VORNAME;TELEFON;FAX;EMAIL;MOBIL;KV_ID;KD_ID;KAHELIT
+	Binder;Felix;;;Ganzzug.dbcl@deutschebahn.com;+49 152 33302891;852801;687091;0
+	Arnold;Carsten;0372 024 0320;;produktion.d@sakret-sachsen.de;;686491;840291;0
+	Metternich;Achim;+49 2362 2005 39;;Achim.Metternich@euroquarz.de;;673621;80051;1
+
+	Infos zum CSV-Inhalts:
+	Im Ansprechpartner_CSV entspricht das CSV-Feld "KD_ID" dem Feld beim Kunden_CSV mit ebenfalls dem Namen "KD_ID"
+	Das CSV-Feld KV_ID in diesem CSV ist der Primary Key von "Ansprechpartner"
+
+
+Artikel_CSV (Voraussichtliche Gesamtgröße des CSV ca 20kB):
+	Beispiel -Inhalt:
+	Art;Nummer;Bezeichnung;Zusatzinfo;DIN/EN;Beschreibung;Einheit;ART_ID;KD_IDS
+	Sand und Kies, feuergetrocknet;530104;Quarzsand 0,1 - 0,4 mm;;;OAS 293;t;132322;687091
+	Sand und Kies, feuergetrocknet;510104;Quarzsand 0,1 - 0,4 mm;;;"OAS 293a geändert am 01.04.2026, bo.";t;13291;686491|682932
+	Sand und Kies, haldenfeucht;110010BS;Beachsand;;nach DVV Beach 1 für Outdoor-Beach-Anlagen;;t;13382;687091
+ 
+	Infos zum CSV-Inhalts:
+	Das CSV-Feld ART_ID ist der Primary Key von "Artikel"
+	In KD_IDS sind mit "|"-separierte Kunden KD_ID aus dem Kunden_CSV hinterlegt
+	Im letzte Feld "KD_IDs" sind die Zuordnungen des entsprechenden Artikels zu Kunden hinterlegt. 
+	Wenn mehreren Kunden der Artikel zugeordnet ist, dann sind die entsprechenen Werte von KD_ID aus dem Kunden_CSV mit "|" separiert aufgelistet
+
+Lieferadressen_CSV (Voraussichtliche Gesamtgröße des CSV ca 750kB):
+	Beispiel -Inhalt:
+	Adresse Feld1;Adresse Feld2;STRASSE;PLZ;ORT;KD_ID;ADR_ID_LIEFERANSCHRIFT;KAHELIT
+	Weco GmbH & Co. KG;Lager Groß Rosenburg;Sachsendorfer Str. 6;39240;Groß Rosenburg;760691;1500101;0
+	ab Werk;;;39240;Groß Rosenburg;760691;1732481;0
+	Sakret Trockenbaustoffe;Sachsen GmbH & Co. KG;Am See 6;01619;Zeithain;80051;217891;1
+
+	Infos zum CSV-Inhalts:
+	Das CSV-Feld ADR_ID_LIEFERANSCHRIFT ist der Primary Key von "Lieferadressen"
+	Bei der Suche nach der richtigen Lieferadresse zu der hochgeladenen Datei kommen nur solche Lieferadressen in Frage, die im CSV-Feld "KD_ID" identisch ist 
+	mit dem  CSV-Feld "KD_ID" aus dem Stammdaten-Feld Kunden_CSV für den gefundenen Kunden
+
+Nach der Auswertung der hochgeladenen Datei soll ein MKK-Angebotmanager-App ein Datensatz erstellt werden, wobei es nur zwei Felder bedarf:
+Die "MKK-Angebotmanager"-App hat folgende Felder: 
+	Anfrage_Datei 
+	Ergebnis_Json
+	PK_ID
+Weitere strukturierte Daten/Felder sind in dieser App nicht gewünscht. 
+
+Die auszuwertende Datei soll im Feld "Anfrage_Datei" hochgeladen werden können. 
+Beim Speichern soll die Dateianalyse automatisch durchgeführt werden. 
+Alle gefundenen Informationen für Kunde, Ansprechpartner, Artikel, Lieferadresse aus dem PDF sollen im JSON-Format im Feld "Ergebnis_Json" im JSON-Formate erstellt und automatisch durch die Auswerte-Aktion abgelegt werden.
+
+
+Das JSON-Ergebnis könnte für das Beispiel -PDF "Anfrage_an_MKK_von_Sakret_2026-6000267.pdf" im Anhang wie folgt erstelle werden:
+{
+	"nummer": "82377",
+	"datum": "26.01.2026",
+	"anfrageabsender": {
+		"kd_id": 686491,
+		"bezeichnung": "Sakret",
+		"strasse": "Industriestraße 1",
+		"plz": "09263",
+		"ort": "Claußnitz",
+		"telefon": "03 72 02 / 403-0",
+		"fax": "03 72 02 / 403-50",
+		"e-mail": "dispo@sakret-sachsen.de",
+		"web": "www.sakret.de",
+		"ansprechpartner": {
+			"kv_id": 840291,
+			"name": "Carsten Arnold",
+			"telefon": "037202 40320",
+			"e-mail": "produktion.d@sakret-sachsen.de"
+		}
+	},
+	"anfrageempfaenger": {
+		"kd_id": 123891,
+		"bezeichnung": "MKK",
+		"strasse": "Finsterwalder Chaussee 16a",
+		"plz": "03253",
+		"ort": "Doberlug-Kirchhain"
+	},
+	"lieferanschrift": {
+		"adr_id_lieferanschrift": 217891,
+		"bezeichnung": "SAKRET Trockenbaustoffe",
+		"strasse": "Industriestraße 1",
+		"plz": "09236",
+		"ort": "Claussnitz"
+	},
+	"artikel": [
+		{
+			"pos": 1,
+			"artikel": "QS Lose 0,1-0,4 mm WII",
+			"art_id": 13291,
+			"menge": 25,
+			"einheit": "t"
+		}
+	],
+	"kahelit": 0
+}
+
+
+Das JSON-Feld "kahelit" soll 1 sein,
+wenn im hochgelandenen Dokument irgendwo die   Begriffe "EUROQUARZ GmbH" und "KAHELIT GmbH" vorkommen.
+Dann sind auch in den Stammdaten in Kunden_CSV, Ansprechpartner_CSV und Lieferadressen_CSV nur solche Zeilen zu berücksichtigen, 
+die im csv-Feld "kahelit" den Wert 1 haben.
+Ausserdem ist dann auch immer das JSON -Feld  "anfrageabsender" fest:
+	32061;EUROQUARZ GmbH;DE 125079913;;EUROQUARZ GmbH;;;;Südwall 15;46282;Dorsten;D;(035205) 527-0;;;;80051;1
+Und der "anfrageempfaenger" soll dann nicht mit "Kahelit gmbh" gefüllt werden, sondern der "anfrageempfaenger" wird im hochgeladenen Dokument als "Verkaufsadresse" benannt. 
+Diese Adresse muss dann im Kunden_CSV gesucht werden.
+Ausserdem gibt es noch weitere Angaben in der hochgeladnenen Datei, z.B. "Bestellnr" und "Kreditorennr".
+Die können dann ebenfalls mit in das Json-Ergebnis aufgenommen werden.
+
+
+Das JSON-Ergebnis könnte für das Beispiel -PDF "Anfrage_an_Kahelit_von_Euroquarz_22B21522.pdf" im Anhang wie folgt erstelle werden:
+{
+	"nummer": "22B21522",
+	"datum": "26.01.2026",
+	"Kreditorennr": "502007",
+	"anfrageabsender": {
+		"kd_id": 80051,
+		"bezeichnung": "EUROQUARZ GmbH",
+		"strasse": "Südwall 15",
+		"plz": "46282",
+		"ort": "Dorsten",
+		"ansprechpartner": {
+			"kv_id": 673621,
+			"name": "Achim Metternich",
+			"telefon": "+49 2362 2005 39",
+			"e-mail": "Achim.Metternich@euroquarz.de"
+		}
+	},
+	"anfrageempfaenger": {
+		"kd_id": 1131511,
+		"bezeichnung": "Raildox GmbH & Co. KG",
+		"strasse": "Zum Güterbahnhof 7"
+	},
+	"lieferanschrift": {
+		"adr_id_lieferanschrift": 2524491,
+		"bezeichnung": "Mercer Timber Products GmbH",
+		"strasse": "Am Bahnhof 123",
+		"plz": "07929",
+		"ort": "Saalburg-Ebersdorf"
+	},
+	"artikel": [
+		{
+			"art_id": 183491,
+			"pos": 1,
+			"artikel": "Bremssand 0,5 - 1,2 mm",
+			"menge": 15,
+			"einheit": "t"
+		}
+	],
+	"kahelit": 1
+}
+
+
+
+Artikel muss eine Liste sein, da mehrere Positionen für ein Angebot möglich sein müssen.
+
+
+Das JSON kann auch noch durch weitere gefundene Infos aus dem PDF ergänzt werden. 
+Z.B. könnte im vorliegenden Beispiel noch zusätzlich 
+	"faktura-email" : "faktura@sakret-sachsen.de"
+und Ähnliches ergängt werden, wenn es in der hochgeladenen Datei gefunden wird.
+
+
+Die Auswertung der Datei soll immer stattfinden, wenn ein neuer Datensatz mit einer hochgeladenen Datei angelegt wird. 
+Diese Aktion soll aber auch händisch über einen Button ausgelöst werden können.

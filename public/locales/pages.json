@@ -1,0 +1,40 @@
+{
+  "pages": {
+    "en": {
+      "Alle Anfragen sind ausgewertet — zuletzt {0}.": "All requests analyzed — last {0}.",
+      "Alle vier Listen gefüllt": "All four lists filled",
+      "Anfrage hochladen": "Upload request",
+      "Anfrage ohne Auswertung": "Request without analysis",
+      "Anfrage prüfen": "Review request",
+      "Ergebnis unlesbar": "Result unreadable",
+      "Erste Anfrage hochladen": "Upload first request",
+      "Euroquarz mit festem Absender": "Euroquarz with fixed sender",
+      "Heute": "Today",
+      "Heute eingegangen": "Received today",
+      "Kahelit-Anfragen": "Kahelit requests",
+      "Keine Anfrage in dieser Auswahl.": "No requests in this selection.",
+      "Keine Kahelit-Anfrage": "No Kahelit request",
+      "Lade die erste Kundenanfrage hoch — die Auswertung startet beim Speichern.": "Upload the first customer request — analysis starts on save.",
+      "Leer — bitte befüllen": "Empty — please fill",
+      "Neueste Anfragen": "Latest requests",
+      "Noch kein Ergebnis": "No result yet",
+      "Noch keine Anfrage. Lade eine PDF, ein Bild oder einen E-Mail-Text hoch.": "No requests yet. Upload a PDF, an image, or an email text.",
+      "Noch keine Stammdaten — ohne sie findet die Auswertung keine Kunden und Artikel.": "No master data yet — without it, the analysis cannot find any customers or articles.",
+      "Noch nichts Neues heute": "Nothing new today",
+      "Nr.": "No.",
+      "Pflegen": "Manage",
+      "Position": "Item",
+      "Positionen": "Items",
+      "Stammdaten anlegen": "Create master data",
+      "Stammdaten-Stand": "Master data status",
+      "vor {0} Tagen": "{0} days ago",
+      "{0} Anfragen ohne Ergebnis, zuerst {1} — Auswertung von Hand neu auslösen.": "{0} requests without result, first {1} — retrigger analysis manually.",
+      "{0} Liste(n) leer": "{0} list(s) empty",
+      "{0} Zeilen": "{0} rows",
+      "{0} hat noch kein Ergebnis — Auswertung von Hand neu auslösen.": "{0} has no result yet — retrigger analysis manually.",
+      "{0} warten noch auf eine Auswertung.": "{0} are still waiting for analysis.",
+      "{0} wartet noch auf eine Auswertung.": "{0} is still waiting for analysis."
+    }
+  },
+  "v": 1
+}
